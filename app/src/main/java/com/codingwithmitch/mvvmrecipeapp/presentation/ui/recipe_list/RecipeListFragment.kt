@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.codingwithmitch.mvvmrecipeapp.R
 import com.codingwithmitch.mvvmrecipeapp.presentation.BaseApplication
+import com.codingwithmitch.mvvmrecipeapp.presentation.components.ContentView
 import com.codingwithmitch.mvvmrecipeapp.presentation.components.RecipeList
 import com.codingwithmitch.mvvmrecipeapp.presentation.components.SearchAppBar
 import com.codingwithmitch.mvvmrecipeapp.presentation.components.util.SnackbarController
@@ -67,6 +68,9 @@ class RecipeListFragment : Fragment() {
 
                     Scaffold(
                         topBar = {
+                            // 这里想要添加：下拉列表框
+                            // DropdownList()
+                            ContentView()
                             SearchAppBar(
                                 query = query,
                                 onQueryChanged = viewModel::onQueryChanged,

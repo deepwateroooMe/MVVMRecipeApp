@@ -3,8 +3,11 @@ package com.codingwithmitch.mvvmrecipeapp.presentation.ui.recipe_list
 import com.codingwithmitch.mvvmrecipeapp.presentation.ui.recipe_list.FoodCategory.*
 
 enum class FoodCategory(val value: String){
+    BREAD("Bread"),
     CHICKEN("Chicken"),
     BEEF("Beef"),
+    NOODLES("Noodles"),
+    STARCH("Starch"),
     SOUP("Soup"),
     DESSERT("Dessert"),
     VEGETARIAN("Vegetarian"),
@@ -15,7 +18,7 @@ enum class FoodCategory(val value: String){
 }
 
 fun getAllFoodCategories(): List<FoodCategory>{
-    return listOf(CHICKEN, BEEF, SOUP, DESSERT, VEGETARIAN, MILK, VEGAN, PIZZA, DONUT)
+    return listOf(BREAD, CHICKEN, BEEF, NOODLES, STARCH, SOUP, DESSERT, VEGETARIAN, MILK, VEGAN, PIZZA, DONUT)
 }
 
 fun getFoodCategory(value: String): FoodCategory? {

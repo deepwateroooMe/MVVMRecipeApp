@@ -3,9 +3,9 @@ package com.codingwithmitch.mvvmrecipeapp.network.model
 import com.codingwithmitch.mvvmrecipeapp.domain.model.Recipe
 import com.codingwithmitch.mvvmrecipeapp.domain.util.DomainMapper
 
+// 接口实现类
 class RecipeDtoMapper : DomainMapper<RecipeDto, Recipe> {
-
-    override fun mapToDomainModel(model: RecipeDto): Recipe {
+    override fun mapToDomainModel(model: RecipeDto): Recipe { 
         return Recipe(
             id = model.pk,
             title = model.title,
@@ -33,6 +33,7 @@ class RecipeDtoMapper : DomainMapper<RecipeDto, Recipe> {
         )
     }
 
+    // 这两个公用 API: 提供给，应用、外界调用来着？【TODO】：
     fun toDomainList(initial: List<RecipeDto>): List<Recipe>{
         return initial.map { mapToDomainModel(it) }
     }
@@ -40,6 +41,4 @@ class RecipeDtoMapper : DomainMapper<RecipeDto, Recipe> {
     fun fromDomainList(initial: List<Recipe>): List<RecipeDto>{
         return initial.map { mapFromDomainModel(it) }
     }
-
-
 }

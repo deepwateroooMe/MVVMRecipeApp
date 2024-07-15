@@ -20,10 +20,9 @@ fun DefaultSnackbar(
             Snackbar(
                 modifier = Modifier.padding(16.dp),
                 content = {
-                    Text(
-                        text = data.message,
-                        style = MaterialTheme.typography.body2,
-                        color = Color.White
+                    Text(text = data.message,
+                         style = MaterialTheme.typography.body2,
+                         color = Color.White
                     )
                 },
                 action = {
@@ -33,10 +32,9 @@ fun DefaultSnackbar(
                                 onDismiss()
                             }
                         ) {
-                            Text(
-                                text = actionLabel,
-                                style = MaterialTheme.typography.body2,
-                                color = Color.White
+                            Text(text = actionLabel,
+                                 style = MaterialTheme.typography.body2,
+                                 color = Color.White
                             )
                         }
                     }
@@ -46,11 +44,3 @@ fun DefaultSnackbar(
         modifier = modifier
     )
 }
-
-
-
-
-
-
-
-

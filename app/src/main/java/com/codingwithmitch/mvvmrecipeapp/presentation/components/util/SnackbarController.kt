@@ -15,17 +15,14 @@ import kotlinx.coroutines.launch
  *
  */
 @ExperimentalMaterialApi
-class SnackbarController
+class SnackbarController // 亲爱的表哥的活宝妹，搞不懂：这个 Snackbar 是什么，是干什么用的。。。【TODO】：这个，还是晚点儿再看
 constructor(
         private val scope: CoroutineScope
 ){
-
     private var snackbarJob: Job? = null
-
     init {
         cancelActiveJob()
     }
-
     fun getScope() = scope
 
     fun showSnackbar(
@@ -33,7 +30,7 @@ constructor(
             message: String,
             actionLabel: String
     ){
-        if(snackbarJob == null){
+        if (snackbarJob == null){
             snackbarJob = scope.launch {
                 scaffoldState.snackbarHostState.showSnackbar(
                         message = message,

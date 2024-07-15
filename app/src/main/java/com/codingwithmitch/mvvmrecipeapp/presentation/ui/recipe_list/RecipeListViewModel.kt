@@ -32,21 +32,15 @@ constructor(
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
-
     val recipes: MutableState<List<Recipe>> = mutableStateOf(ArrayList())
-
     val query = mutableStateOf("")
-
     val selectedCategory: MutableState<FoodCategory?> = mutableStateOf(null)
-
     val loading = mutableStateOf(false)
-
     // Pagination starts at '1' (-1 = exhausted)
     val page = mutableStateOf(1)
-
     var recipeListScrollPosition = 0
 
-    init {
+    init { // 这里定义，是新生也是遗嘱：要启动或是保存的、数据项。。
         savedStateHandle.get<Int>(STATE_KEY_PAGE)?.let { p ->
             setPage(p)
         }
@@ -60,13 +54,11 @@ constructor(
             setSelectedCategory(c)
         }
 
-        if(recipeListScrollPosition != 0){
+        if (recipeListScrollPosition != 0){
             onTriggerEvent(RestoreStateEvent)
-        }
-        else{
+        } else {
             onTriggerEvent(NewSearchEvent)
         }
-
     }
 
     fun onTriggerEvent(event: RecipeListEvent){
@@ -83,7 +75,7 @@ constructor(
                         restoreState()
                     }
                 }
-            }catch (e: Exception){
+            } catch (e: Exception){
                 Log.e(TAG, "launchJob: Exception: ${e}, ${e.cause}")
                 e.printStackTrace()
             }
@@ -96,7 +88,7 @@ constructor(
     private suspend fun restoreState(){
         loading.value = true
         val results: MutableList<Recipe> = mutableListOf()
-        for(p in 1..page.value){
+        for (p in 1..page.value){
             val result = repository.search(
                 token = token,
                 page = p,
@@ -166,7 +158,7 @@ constructor(
     /**
      * Called when a new search is executed.
      */
-    private fun resetSearchState() {
+    private fun resetSearchState() { // 清理一些不必要的数据
         recipes.value = listOf()
         page.value = 1
         onChangeRecipeScrollPosition(0)
@@ -183,7 +175,7 @@ constructor(
     }
 
     fun onSelectedCategoryChanged(category: String) {
-        val newCategory = getFoodCategory(category)
+        val newCategory = getFoodCategory(category) // FoodCategory.kt 里定义的
         setSelectedCategory(newCategory)
         onQueryChanged(category)
     }
@@ -208,19 +200,3 @@ constructor(
         savedStateHandle.set(STATE_KEY_QUERY, query)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

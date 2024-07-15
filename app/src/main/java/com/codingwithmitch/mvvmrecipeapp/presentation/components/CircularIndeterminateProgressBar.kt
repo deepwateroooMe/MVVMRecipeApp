@@ -34,22 +34,3 @@ fun CircularIndeterminateProgressBar(isDisplayed: Boolean, verticalBias: Float) 
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

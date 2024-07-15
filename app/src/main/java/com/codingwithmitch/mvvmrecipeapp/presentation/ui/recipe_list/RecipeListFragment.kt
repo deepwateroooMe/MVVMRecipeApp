@@ -30,14 +30,12 @@ import javax.inject.Inject
 @ExperimentalComposeUiApi
 @ExperimentalMaterialApi
 @ExperimentalCoroutinesApi
-@AndroidEntryPoint
+// 标记：Hilt可以为带有 @AndroidEntryPoint 注释的其他 Android 类提供依赖项。该标签可以被用在四大组件以及View上面
+@AndroidEntryPoint 
 class RecipeListFragment : Fragment() {
-
     @Inject
     lateinit var application: BaseApplication
-
     private val snackbarController = SnackbarController(lifecycleScope)
-
     private val viewModel: RecipeListViewModel by viewModels()
 
     override fun onCreateView(
@@ -47,17 +45,11 @@ class RecipeListFragment : Fragment() {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-
                 val recipes = viewModel.recipes.value
-
                 val query = viewModel.query.value
-
                 val selectedCategory = viewModel.selectedCategory.value
-
                 val loading = viewModel.loading.value
-
                 val page = viewModel.page.value
-
                 val scaffoldState = rememberScaffoldState()
 
                 AppTheme(
@@ -65,11 +57,9 @@ class RecipeListFragment : Fragment() {
                     scaffoldState = scaffoldState,
                     darkTheme = application.isDark.value,
                 ) {
-
                     Scaffold(
                         topBar = {
                             // 这里想要添加：下拉列表框
-                            // DropdownList()
                             ContentView()
                             SearchAppBar(
                                 query = query,
@@ -117,30 +107,3 @@ class RecipeListFragment : Fragment() {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

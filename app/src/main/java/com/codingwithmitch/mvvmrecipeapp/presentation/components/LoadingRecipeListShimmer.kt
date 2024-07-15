@@ -68,6 +68,4 @@ fun LoadingRecipeListShimmer(
             }
         }
     }
-
-
 }

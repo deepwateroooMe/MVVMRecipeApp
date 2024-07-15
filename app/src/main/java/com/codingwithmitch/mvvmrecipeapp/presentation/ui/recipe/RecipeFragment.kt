@@ -35,17 +35,14 @@ const val IMAGE_HEIGHT = 260
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class RecipeFragment: Fragment() {
-
     @Inject
-    lateinit var application: BaseApplication
-
-    private val snackbarController = SnackbarController(lifecycleScope)
-
+    lateinit var application: BaseApplication // 拿一个应用级别上下文引用。。
+    private val snackbarController = SnackbarController(lifecycleScope) // 【TODO】：还没弄明白，这个 snackbar 是干什么的、有什么用
     private val viewModel: RecipeViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) { // 单独的菜谱页
         super.onCreate(savedInstanceState)
-        arguments?.getInt("recipeId")?.let { recipeId ->
+        arguments?.getInt("recipeId")?.let { recipeId -> // arguments：不知道这个变量，是什么意思【TODO】：
             viewModel.onTriggerEvent(GetRecipeEvent(recipeId))
         }
     }
@@ -55,15 +52,11 @@ class RecipeFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return ComposeView(requireContext()).apply{
+        return ComposeView(requireContext()).apply {
             setContent {
-
                 val loading = viewModel.loading.value
-
                 val recipe = viewModel.recipe.value
-
                 val scaffoldState = rememberScaffoldState()
-
                 AppTheme(
                     displayProgressBar = loading,
                     scaffoldState = scaffoldState,
@@ -78,9 +71,10 @@ class RecipeFragment: Fragment() {
                         Box (
                             modifier = Modifier.fillMaxSize()
                         ){
-                            if (loading && recipe == null) LoadingRecipeShimmer(imageHeight = IMAGE_HEIGHT.dp)
+                            if (loading && recipe == null) // 正忙加载中：显示友好加载中、图标标记。。。
+                                LoadingRecipeShimmer(imageHeight = IMAGE_HEIGHT.dp)
                             else recipe?.let {
-                                if(it.id == 1) { // force an error to demo snackbar
+                                if (it.id == 1) { // force an error to demo snackbar
                                     snackbarController.getScope().launch {
                                         snackbarController.showSnackbar(
                                             scaffoldState = scaffoldState,
@@ -89,8 +83,8 @@ class RecipeFragment: Fragment() {
                                         )
                                     }
                                 }
-                                else{
-                                    RecipeView(
+                                else {
+                                    RecipeView( // 加载：单条菜谱页
                                         recipe = it,
                                     )
                                 }
@@ -110,11 +104,3 @@ class RecipeFragment: Fragment() {
         }
     }
 }
-
-
-
-
-
-
-
-

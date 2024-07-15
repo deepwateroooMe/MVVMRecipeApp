@@ -1,11 +1,9 @@
 package com.codingwithmitch.mvvmrecipeapp.presentation.components
 
-// import androidx.activity.ComponentActivity
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
-// import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -32,12 +30,11 @@ fun DropdownList(itemList: List<String>, selectedIndex: Int, modifier: Modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center) {
 
-        // button
         Box(
             modifier = modifier
                 .background(Color.Red)
-                .clickable { showDropdown = true },
-            //            .clickable { showDropdown = !showDropdown },
+                .clickable { showDropdown = !showDropdown },
+                // .clickable { showDropdown = true },
             contentAlignment = Alignment.Center
         ) {
             Text(text = itemList[selectedIndex], modifier = Modifier.padding(3.dp))

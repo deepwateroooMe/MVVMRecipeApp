@@ -18,5 +18,3 @@ val Black2 = Color(0xFF000000)
 
 val RedErrorDark = Color(0xFFB00020)
 val RedErrorLight = Color(0xFFEF5350)
-
-

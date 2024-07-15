@@ -18,7 +18,6 @@ const val DEFAULT_RECIPE_IMAGE = R.drawable.empty_plate
 @ExperimentalCoroutinesApi
 @Composable
 fun loadPicture(url: String, @DrawableRes defaultImage: Int): MutableState<Bitmap?> {
-
     val bitmapState: MutableState<Bitmap?> = mutableStateOf(null)
 
     // show default image while image loads
@@ -53,7 +52,6 @@ fun loadPicture(url: String, @DrawableRes defaultImage: Int): MutableState<Bitma
 }
 
 
-
 @ExperimentalCoroutinesApi
 @Composable
 fun loadPicture(@DrawableRes drawable: Int): MutableState<Bitmap?> {
@@ -75,16 +73,3 @@ fun loadPicture(@DrawableRes drawable: Int): MutableState<Bitmap?> {
 
     return bitmapState
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
